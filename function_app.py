@@ -1,11 +1,11 @@
 # function_app.py
 import azure.functions as func
-#import logging
-#from azure.storage.queue import QueueClient
-#import os
-#from datetime import datetime
-#import json
-#import blob_trigger, queue_triggers, http_redis_trigger
+import logging
+from azure.storage.queue import QueueClient
+import os
+from datetime import datetime
+import json
+import blob_trigger, queue_triggers, http_redis_trigger
 
 # Define the queue name
 QUEUE_NAME = "url-job-q"
@@ -13,9 +13,9 @@ app = func.FunctionApp()
 
 
 # Register the blob triggers from blob_trigger.py
-# app.register_functions(blob_trigger.bp)
-# app.register_functions(queue_triggers.bp)
-# app.register_functions(http_redis_trigger.bp)
+app.register_functions(blob_trigger.bp)
+app.register_functions(queue_triggers.bp)
+app.register_functions(http_redis_trigger.bp)
 
 
 # Test if app is recognized by logging a message
