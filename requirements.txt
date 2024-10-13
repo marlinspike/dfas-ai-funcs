@@ -12,3 +12,6 @@ azure-storage-queue
 openai
 pydantic
 PyMuPDF
+azure-storage-blob
+redis
+selenium

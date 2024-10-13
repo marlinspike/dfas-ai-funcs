@@ -1,7 +1,9 @@
 # function_app.py
 import azure.functions as func
 import logging
+
 from azure.storage.queue import QueueClient
+
 import os
 from datetime import datetime
 import json
@@ -19,7 +21,7 @@ app.register_functions(http_redis_trigger.bp)
 
 # Test if app is recognized by logging a message
 @app.route(route="hello", methods=["GET","POST","PUT", "DELETE"])
-def hello_function(req: func.HttpRequest) -> func.HttpResponse:
+def main(req: func.HttpRequest) -> func.HttpResponse:
     if req.method == "POST":
         return func.HttpResponse("Hello from FunctionApp! (POST)", status_code=200)
     elif req.method == "GET":
