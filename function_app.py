@@ -17,7 +17,6 @@ app.register_functions(blob_trigger.bp)
 app.register_functions(queue_triggers.bp)
 app.register_functions(http_redis_trigger.bp)
 
-
 # Test if app is recognized by logging a message
 @app.route(route="hello", methods=["GET","POST","PUT", "DELETE"])
 def hello_function(req: func.HttpRequest) -> func.HttpResponse:
