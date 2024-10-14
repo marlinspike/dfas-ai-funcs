@@ -20,17 +20,30 @@ app.register_functions(queue_triggers.bp)
 app.register_functions(http_redis_trigger.bp)
 
 # Test if app is recognized by logging a message
-@app.route(route="hello", methods=["GET","POST","PUT", "DELETE"])
-def main(req: func.HttpRequest) -> func.HttpResponse:
-    if req.method == "POST":
-        return func.HttpResponse("Hello from FunctionApp! (POST)", status_code=200)
-    elif req.method == "GET":
-        return func.HttpResponse("Hello from FunctionApp! (GET)", status_code=200)
-    elif req.method == "PUT":
-        return func.HttpResponse("Hello from FunctionApp! (PUT)", status_code=200)
-    elif req.method == "DELETE":
-        return func.HttpResponse("Hello from FunctionApp! (DELETE)", status_code=200)
-    else:
-        return func.HttpResponse("Hello from FunctionApp!", status_code=200)
+@app.route(route="hello_world", methods=["GET", "POST", "PUT", "DELETE"])
+def hello_world(req: func.HttpRequest) -> func.HttpResponse:
+    name = req.params.get('name')
+    if not name:
+        try:
+            req_body = req.get_json()
+        except ValueError:
+            req_body = None
+        if req_body:
+            name = req_body.get('name')
 
+    if name:
+        message = f"Hello {name}! Hello from FunctionApp!"
+    else:
+        message = "Hello from FunctionApp, stranger!"
+
+    if req.method == "POST":
+        return func.HttpResponse(f"{message} (POST)", status_code=200)
+    elif req.method == "GET":
+        return func.HttpResponse(f"{message} (GET)", status_code=200)
+    elif req.method == "PUT":
+        return func.HttpResponse(f"{message} (PUT)", status_code=200)
+    elif req.method == "DELETE":
+        return func.HttpResponse(f"{message} (DELETE)", status_code=200)
+    else:
+        return func.HttpResponse(message, status_code=200)
 
