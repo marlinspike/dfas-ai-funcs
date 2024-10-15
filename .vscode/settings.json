@@ -5,5 +5,6 @@
     "azureFunctions.projectRuntime": "~4",
     "debug.internalConsoleOptions": "neverOpen",
     "azureFunctions.projectLanguageModel": 2,
-    "python.defaultInterpreterPath": "/Users/reubencleetus/.pyenv/versions/azure-functions-310/bin/python"
+    "python.defaultInterpreterPath": "/Users/reubencleetus/.pyenv/versions/azure-functions-310/bin/python",
+    "appService.showBuildDuringDeployPrompt": false
 }
